@@ -20,6 +20,12 @@ docker exec -it --user root jenkins-cicd bash
 apt update
 apt install -y git
 
+apt update
+apt install -y curl
+curl -fsSL https://deb.nodesource.com/setup_18.x | bash -
+apt install -y nodejs
+node -v
+npm -v
 
 # Jenkins will run on:
 
