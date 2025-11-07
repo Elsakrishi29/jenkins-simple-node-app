@@ -1,0 +1,28 @@
+{
+  "name": "jenkins-simple-node-app",
+  "version": "1.0.0",
+  "description": "Sample Node.js app for Jenkins + Docker CI",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "mocha --reporter spec"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Elsakrishi29/jenkins-simple-node-app.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Elsakrishi29/jenkins-simple-node-app/issues"
+  },
+  "homepage": "https://github.com/Elsakrishi29/jenkins-simple-node-app#readme",
+  "dependencies": {
+    "chai": "^6.2.0",
+    "express": "^5.1.0",
+    "mocha": "^11.7.5"
+  },
+  "devDependencies": {
+    "supertest": "^7.1.4"
+  }
+}
