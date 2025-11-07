@@ -3,9 +3,31 @@
 ## Run Jenkins using Docker Container
 
 ```bash
+docker volume create jenkins_home
+
+docker run -d \
+  -p 8080:8080 -p 50000:50000 \
+  -v jenkins_home:/var/jenkins_home \
+  -v /var/run/docker.sock:/var/run/docker.sock \
+  --name jenkins-cicd \
+  jenkins/jenkins:lts
+
+# Get Password
+
+docker exec jenkins-cicd cat /var/jenkins_home/secrets/initialAdminPassword
+
+docker exec -it --user root jenkins-cicd bash
+apt update
+apt install -y git
+
+
 # Jenkins will run on:
 
 http://localhost:8080
+
+docker stop jenkins-cicd
+docker rm jenkins-cicd
+
 ```
 
 ## Jenkins Unlock Password
