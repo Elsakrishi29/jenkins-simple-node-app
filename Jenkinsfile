@@ -1,10 +1,10 @@
 pipeline {
-    agent {
-        docker { image 'node:18-alpine' }
-    }
+    agent any
     stages {
         stage('Checkout') {
-            steps { checkout scm }
+            steps { 
+                git branch: 'main', url: 'https://github.com/Elsakrishi29/jenkins-simple-node-app.git'
+            }
         }
         stage('Install Dependencies') {
             steps { sh 'npm install' }
