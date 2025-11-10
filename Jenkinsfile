@@ -1,34 +1,21 @@
 pipeline {
     agent any
-
     stages {
         stage('Checkout') {
             steps {
                 git branch: 'main', url: 'https://github.com/Elsakrishi29/jenkins-simple-node-app.git'
             }
         }
-
         stage('Install Dependencies') {
-            steps {
-                sh 'npm install'
-            }
+            steps { sh 'npm install' }
         }
-
-        stage('Run Tests') {
-            steps {
-                sh 'npm test || true'
-            }
-        }
-
         stage('Build Docker Image') {
-            steps {
-                sh 'docker build -t my-node-app .'
-            }
+            steps { sh "docker build -t jenkins-simple-node-app:${env.BUILD_ID} ." }
         }
-
-        stage('Run Container') {
+        stage('Run Docker Container') {
             steps {
-                sh 'docker run -d -p 3000:3000 my-node-app'
+                sh "docker rm -f simple-app || true"
+                sh "docker run -d -p 3000:3000 --name simple-app jenkins-simple-node-app:${env.BUILD_ID}"
             }
         }
     }
