@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git 'https://github.com/Elsakrishi29/jenkins-simple-node-app.git'
+                git url: 'https://github.com/Elsakrishi29/jenkins-simple-node-app.git', branch: 'main'
             }
         }
 
@@ -22,14 +22,13 @@ pipeline {
 
         stage('Build Docker Image') {
             steps {
-                sh 'docker build -t todo-app .'
+                sh 'docker build -t my-node-app .'
             }
         }
 
         stage('Run Container') {
             steps {
-                sh 'docker rm -f todo-app || true'
-                sh 'docker run -d --name todo-app -p 3000:3000 todo-app'
+                sh 'docker run -d -p 3000:3000 my-node-app'
             }
         }
     }
